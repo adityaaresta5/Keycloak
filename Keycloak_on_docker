@@ -1,0 +1,16 @@
+// Pull Keycloak Docker Image
+docker pull quay.io/keycloak/keycloak:23.0.6
+
+// Run Keycloak Instance with Docker
+docker run -d -p 8080:8080 \
+    -e KEYCLOAK_ADMIN=admin \
+    -e KEYCLOAK_ADMIN_PASSWORD=your-password \
+    -e KC_PROXY=edge \
+    -e KEYCLOAK_HOSTNAME=192.168.56.103 \
+    -e PROXY_ADDRESS_FORWARDING=true \
+    --restart always \
+    -v /your/projet/path:/opt/jboss/keycloak/standalone/data \
+    quay.io/keycloak/keycloak:23.0.6 start-dev
+
+// Access Keycloak Admin Console
+http://192.168.56.103:8080/auth/admin
